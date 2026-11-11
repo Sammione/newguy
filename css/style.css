@@ -475,6 +475,7 @@ h1, h2, h3, h4, h5, h6,
 .testimonial-carousel {
     max-width: 750px;
     margin: 0 auto;
+    position: relative;
 }
 
 .testimonial-carousel .testimonial-item p {
@@ -488,12 +489,80 @@ h1, h2, h3, h4, h5, h6,
     font-weight: 700;
 }
 
+.testimonial-carousel .owl-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.testimonial-carousel .owl-nav button.owl-prev,
+.testimonial-carousel .owl-nav button.owl-next {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--theme-surface) !important;
+    color: var(--theme-accent) !important;
+    border: 1px solid rgba(200, 35, 104, 0.3) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 10px rgba(38, 25, 32, 0.08);
+    transition: all 0.25s ease;
+}
+
+.testimonial-carousel .owl-nav button.owl-prev:hover,
+.testimonial-carousel .owl-nav button.owl-next:hover {
+    background: var(--theme-accent) !important;
+    color: #FFFFFF !important;
+    border-color: var(--theme-accent) !important;
+    transform: translateY(-2px);
+}
+
 .testimonial-carousel .owl-dots {
-    margin-top: 35px;
-    height: 100px;
+    margin-top: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
+}
+
+.testimonial-carousel .owl-dots .owl-dot span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(200, 35, 104, 0.25);
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.testimonial-carousel .owl-dots .owl-dot.active span {
+    width: 26px;
+    border-radius: 99px;
+    background: var(--theme-accent);
+}
+
+.swipe-hint span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--theme-muted);
+    background: var(--theme-surface);
+    border: 1px solid var(--theme-border);
+    box-shadow: 0 2px 8px rgba(38, 25, 32, 0.04);
+}
+
+@keyframes swipeNudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+}
+
+.swipe-hint .bi-arrow-right {
+    animation: swipeNudge 1.6s ease-in-out infinite;
+}
+
+.swipe-hint .bi-arrow-left {
+    animation: swipeNudge 1.6s ease-in-out infinite reverse;
 }
 
 @media (max-width: 768px) {
