@@ -1,5 +1,10 @@
 /********** Template CSS **********/
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 .back-to-top {
     position: fixed;
     display: none;
@@ -50,7 +55,7 @@
 .btn-sm-square,
 .btn-lg-square {
     padding: 0;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: inherit;
@@ -67,8 +72,13 @@
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 999;
     transition: .5s;
+}
+
+.navbar-brand h2 {
+    font-size: clamp(1.2rem, 4.5vw, 1.85rem);
+    letter-spacing: 1px;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -87,15 +97,30 @@
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav .nav-link,
-    .navbar.bg-dark .navbar-nav .nav-link {
-        margin-right: 0;
-        padding: 10px 0;
+    .navbar {
+        padding: 12px 15px;
+        background: rgba(15, 17, 21, 0.96);
+    }
+
+    .navbar .navbar-collapse {
+        background: #111418;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-top: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .navbar .navbar-nav {
-        margin-top: 8px;
-        border-top: 1px solid var(--bs-light);
+        margin-top: 4px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar .navbar-nav .nav-link,
+    .navbar.bg-dark .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 }
 
@@ -132,7 +157,20 @@
 }
 
 
-/*** Header ***/
+/*** Header & Hero Carousel ***/
+#header-carousel .carousel-item {
+    position: relative;
+    min-height: 520px;
+    max-height: 85vh;
+}
+
+#header-carousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
 .carousel-caption {
     top: 0;
     left: 0;
@@ -157,7 +195,8 @@
 @media (max-width: 768px) {
     #header-carousel .carousel-item {
         position: relative;
-        min-height: 550px;
+        min-height: 480px;
+        height: 75vh;
     }
     
     #header-carousel .carousel-item img {
@@ -165,6 +204,23 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center 20%;
+    }
+
+    .carousel-caption {
+        padding: 85px 15px 30px;
+    }
+
+    .carousel-caption h1.display-1 {
+        font-size: clamp(1.85rem, 7.5vw, 3rem) !important;
+        line-height: 1.2;
+        letter-spacing: 0.5px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 14px;
+        letter-spacing: 2px !important;
+        margin-bottom: 0.75rem !important;
     }
 }
 
@@ -174,6 +230,17 @@
     background-size: cover;
 }
 
+@media (max-width: 768px) {
+    .page-header {
+        padding-top: 130px;
+        padding-bottom: 35px;
+    }
+
+    .page-header h1.display-4 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+}
+
 .page-header .breadcrumb-item + .breadcrumb-item::before {
     color: var(--bs-white);
 }
@@ -181,7 +248,9 @@
 
 /*** Title ***/
 .title {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .title .title-left,
@@ -190,6 +259,7 @@
     display: inline-block;
     text-transform: uppercase;
     overflow: hidden;
+    max-width: 100%;
 }
 
 .title .title-center {
@@ -235,6 +305,23 @@
 .title .title-center h1,
 .title .title-right h1 {
     border-bottom: 1px solid var(--bs-white);
+    font-size: clamp(1.6rem, 5.5vw, 2.75rem);
+    line-height: 1.25;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 576px) {
+    .title .title-left h5,
+    .title .title-center h5,
+    .title .title-right h5 {
+        font-size: 14px;
+    }
+    .title .title-left h1,
+    .title .title-center h1,
+    .title .title-right h1 {
+        font-size: 1.65rem;
+    }
 }
 
 
@@ -283,75 +370,9 @@
 }
 
 
-/*** Team ***/
-.team-item {
-    position: relative;
-}
-
-.team-item .team-name {
-    position: absolute;
-    width: 100%;
-    height: 60px;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, .7);
-}
-
-.team-item .team-body {
-    position: relative;
-    overflow: hidden;
-}
-
-.team-item .team-body .team-before,
-.team-item .team-body .team-after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: calc(100% - 60px);
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, .7);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: .5s;
-}
-
-.team-item .team-body .team-after {
-    left: auto;
-    right: 0;
-}
-
-.team-item .team-body .team-before {
-    text-align: right;
-}
-
-.team-item:hover .team-body .team-before,
-.team-item:hover .team-body .team-after {
-    width: 50%;
-}
-
-.team-item .team-body .team-before span,
-.team-item .team-body .team-after span {
-    margin: 5px;
-    color: var(--bs-white);
-    opacity: 0;
-    transition: .5s;
-}
-
-.team-item:hover .team-body .team-before span,
-.team-item:hover .team-body .team-after span {
-    opacity: 1;
-    transition-delay: .2s;
-}
-
-
-/*** Testimonial ***/
+/*** Testimonial Carousel ***/
 .testimonial-carousel {
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
 }
 
@@ -388,6 +409,19 @@
     opacity: 1;
 }
 
+@media (max-width: 768px) {
+    .testimonial-carousel {
+        padding: 0 10px;
+    }
+    .testimonial-carousel .testimonial-item p {
+        font-size: 1.05rem !important;
+        line-height: 1.6;
+    }
+    .testimonial-carousel .testimonial-item h5 {
+        font-size: 0.95rem;
+    }
+}
+
 
 /*** Footer ***/
 @keyframes footerAnimatedBg {
@@ -406,6 +440,18 @@
     background-repeat: repeat-x;
 	animation: footerAnimatedBg 50s linear infinite;
 }
+
+@media (max-width: 768px) {
+    .footer {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+    .footer h1.display-4 {
+        font-size: clamp(1.6rem, 5.5vw, 2.25rem);
+    }
+}
+
+
 /*** Custom Gallery & Interactive Enhancements ***/
 .gallery-card {
     position: relative;
@@ -464,4 +510,47 @@
     padding: 12px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 991.98px) {
+    .gallery-card img {
+        height: 340px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .gallery-card img {
+        height: 290px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .gallery-card img {
+        height: 320px;
+    }
+}
+
+
+/*** Mobile Form & Table Polish ***/
+.table-dark td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+
+.form-control, .form-select {
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+}
+
+@media (max-width: 576px) {
+    .back-to-top {
+        right: 18px;
+        bottom: 18px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
