@@ -39,6 +39,15 @@
         return false;
     });
 
+    // Smooth scroll from hero arrow
+    $('.hero-scroll-down').click(function (e) {
+        e.preventDefault();
+        var target = $($(this).attr('href'));
+        if (target.length) {
+            $('html, body').animate({scrollTop: target.offset().top - 70}, 1000, 'easeInOutExpo');
+        }
+    });
+
 
     // Testimonials carousel
     $('.testimonial-carousel').owlCarousel({
